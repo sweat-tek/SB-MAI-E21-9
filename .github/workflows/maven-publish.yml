@@ -1,11 +1,11 @@
-name: Pipeline (Build & Test)
+name: CI Pipeline
 on: 
   push:
   pull_request:
   workflow_dispatch:
 
 jobs:
-  Test-and-Build:
+  Build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,12 @@ jobs:
           
       - name: Build Pipe
         working-directory: ./JHotDraw
-        run: mvn --batch-mode --update-snapshots verify 
-
-      - name: Test Pipe
+        run: mvn --batch-mode --update-snapshots verify
+        
+  Test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Testing pipeline
         working-directory: ./JHotDraw
         run: mvn test 
