@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build:
+  Set-up-JDK:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,14 +14,21 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          
+  Build:
+    runs-on: ubuntu-latest
+    needs: Set-up-JDK
+    steps:
+      - uses: actions/download-artifact@v2
       - name: Building project
         working-directory: ./JHotDraw
         run: mvn --batch-mode --update-snapshots verify
         
   Test:
     runs-on: ubuntu-latest
-    needs: Build
+    needs: [Set-up-JDK, Build]
     steps:
+      - uses: actions/download-artifact@v2
       - name: Testing project
         working-directory: ./JHotDraw
         run: mvn test 
