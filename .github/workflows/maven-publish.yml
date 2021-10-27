@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: Set-up-JDK
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/checkout@v2
       - name: Building project
         working-directory: ./JHotDraw
         run: mvn --batch-mode --update-snapshots verify
