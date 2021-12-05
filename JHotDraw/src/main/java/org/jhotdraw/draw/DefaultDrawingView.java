@@ -63,9 +63,7 @@ import static org.jhotdraw.draw.AttributeKeys.*;
  * <br>2.0 2006-01-14 Changed to support double precision coordinates.
  * <br>1.0 2003-12-01 Derived from JHotDraw 5.4b1.
  */
-public class DefaultDrawingView
-        extends JComponent
-        implements DrawingView, EditableComponent {
+public class DefaultDrawingView extends JComponent implements DrawingView, EditableComponent {
 
     /**
      * Set this to true to turn on debugging output on System.out.
@@ -128,6 +126,10 @@ public class DefaultDrawingView
         if (r != null) {
             repaint(r);
         }
+    }
+
+    @Override
+    public void setView(DrawingView view) {
     }
 
     private class EventHandler implements FigureListener, CompositeFigureListener, HandleListener, FocusListener {

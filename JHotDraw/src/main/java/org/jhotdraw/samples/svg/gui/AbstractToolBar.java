@@ -58,7 +58,7 @@ public /*abstract*/ class AbstractToolBar extends JDisclosureToolBar {
     /** This should be an abstract method, but the NetBeans GUI builder
      * doesn't support abstract beans.
      */
-    protected void init() {
+    public void init() {
     }
 
     protected PropertyChangeListener getEventHandler() {
@@ -100,7 +100,7 @@ public /*abstract*/ class AbstractToolBar extends JDisclosureToolBar {
     }
 
     @Override
-    final protected JComponent getDisclosedComponent(int state) {
+    public final JComponent getDisclosedComponent(int state) {
         if (panels == null) {
             panels = new JPanel[getDisclosureStateCount()];
             for (int i = 0; i < panels.length; i++) {

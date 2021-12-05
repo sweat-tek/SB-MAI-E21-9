@@ -61,7 +61,7 @@ public class ViewToolBar extends AbstractToolBar {
 
     @Override
     @FeatureEntryPoint(JHotDrawFeatures.VIEW_PALETTE)
-    protected JComponent createDisclosedComponent(int state) {
+    public JComponent createDisclosedComponent(int state) {
         JPanel p = null;
         ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.svg.Labels");
 

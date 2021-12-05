@@ -212,7 +212,7 @@ public class ButtonFactory {
     }
 
     /** Prevent instance creation. */
-    private ButtonFactory() {
+    public ButtonFactory() {
     }
 
     public static Collection<Action> createDrawingActions(DrawingEditor editor) {

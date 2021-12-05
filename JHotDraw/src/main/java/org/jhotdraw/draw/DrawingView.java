@@ -420,4 +420,6 @@ public interface DrawingView {
      * @param l the listener.
      */
     public void removeMouseMotionListener(MouseMotionListener l);
+
+    public void setView(DrawingView view);
 }
