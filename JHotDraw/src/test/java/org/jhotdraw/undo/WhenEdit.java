@@ -8,7 +8,6 @@ package org.jhotdraw.undo;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -32,19 +31,19 @@ public class WhenEdit extends Stage<WhenEdit> {
         assertTrue(undoRedoManager.canUndo());
         assertTrue(undoRedoManager.canUndoOrRedo());
 
-        return this;
+        return self();
     }
 
     WhenEdit the_insignificant_edit_has_been_made() {
         EditTest edit1 = new EditTest(true, false, false);
         undoRedoManager.addEdit(edit1);
 
-        return this;
+        return self();
     }
 
     WhenEdit discarding_all_edits() {
         undoRedoManager.discardAllEdits();
-        return this;
+        return self();
     }
 
 }

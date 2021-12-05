@@ -6,16 +6,8 @@
 package org.jhotdraw.undo;
 
 import com.tngtech.jgiven.Stage;
-import com.tngtech.jgiven.annotation.BeforeStage;
-import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import org.jhotdraw.draw.DefaultDrawingEditor;
-import org.jhotdraw.draw.DefaultDrawingView;
-import org.jhotdraw.draw.DrawingEditor;
-import org.jhotdraw.draw.DrawingView;
-import org.jhotdraw.draw.Figure;
-import org.jhotdraw.draw.QuadTreeDrawing;
-import org.jhotdraw.samples.svg.figures.SVGEllipseFigure;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -34,14 +26,14 @@ public class GivenAnEdit extends Stage<GivenAnEdit> {
         undoRedoManager = new UndoRedoManager();
         edit = new EditTest(true, false, true);
         undoRedoManager.addEdit(edit);
-        return this;
+        return self();
     }
 
     GivenAnEdit no_edits() {
         undoRedoManager = new UndoRedoManager();
         assertTrue(!undoRedoManager.canUndo());
         assertTrue(!undoRedoManager.canUndoOrRedo());
-        return this;
+        return self();
 
     }
 }

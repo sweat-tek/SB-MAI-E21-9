@@ -6,13 +6,7 @@
 package org.jhotdraw.undo;
 
 import com.tngtech.jgiven.Stage;
-import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
-import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import java.util.Collection;
-import org.jhotdraw.draw.DrawingEditor;
-import org.jhotdraw.draw.Figure;
-import org.jhotdraw.samples.svg.figures.SVGEllipseFigure;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -29,11 +23,11 @@ public class ThenEdit extends Stage<ThenEdit> {
 
     ThenEdit the_edit_is_undoable() {
         assertTrue((undoRedoManager.getUndoPresentationName().equals(edit.getUndoPresentationName())));
-        return this;
+        return self();
     }
 
     ThenEdit there_should_be_no_edits() {
         assertTrue(!undoRedoManager.hasSignificantEdits());
-        return this;
+        return self();
     }
 }
