@@ -5,7 +5,7 @@ import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import org.jhotdraw.draw.*;
 
-public class GivenSomeState extends Stage<GivenSomeState> {
+public class GivenObjectSelected extends Stage<GivenObjectSelected> {
 
     @ProvidedScenarioState
     private DrawingEditor editor;
@@ -14,18 +14,19 @@ public class GivenSomeState extends Stage<GivenSomeState> {
     private DefaultDrawingView view;
 
     @BeforeStage
-    private void before() {
+    void before() {
         editor = new DefaultDrawingEditor();
         view = new DefaultDrawingView();
         view.setDrawing(new QuadTreeDrawing()); // test
         editor.setActiveView(view);
     }
 
-    public GivenSomeState an_object_is_selected() {
+    public GivenObjectSelected an_object_is_selected() {
         Figure f1 = new BezierFigure();
 
         editor.getActiveView().getDrawing().add(f1);
+        editor.getActiveView().addToSelection(f1);
 
-        return self(); // return this;
+        return self();
     }
 }
