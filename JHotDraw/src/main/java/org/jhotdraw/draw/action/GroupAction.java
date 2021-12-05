@@ -13,12 +13,14 @@
  */
 package org.jhotdraw.draw.action;
 
+import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import java.util.Collection;
 import java.util.LinkedList;
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
+import org.jhotdraw.app.JHotDrawFeatures;
 import org.jhotdraw.draw.CompositeFigure;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.DrawingView;
@@ -73,6 +75,7 @@ public class GroupAction extends AbstractGroupAction {
         return getView() != null && getView().getSelectionCount() > 1;
     }
 
+    @FeatureEntryPoint(JHotDrawFeatures.GROUPING)
     @Override
     void perform() {
         final DrawingView view = getView();

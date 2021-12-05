@@ -21,9 +21,6 @@ class ThenFiguresGrouped extends Stage<ThenFiguresGrouped> {
     @ExpectedScenarioState
     private Set<Figure> nonselectedFigures;
 
-    @ExpectedScenarioState
-    private Set<Figure> childrenFigures;
-
     ThenFiguresGrouped onlyTheSelectedFiguresAreGrouped() {
         //Only one figure (the resulting group) can be selected
         assertEquals(editor.getActiveView().getSelectionCount(), 1);
@@ -40,20 +37,6 @@ class ThenFiguresGrouped extends Stage<ThenFiguresGrouped> {
         return this;
     }
 
-    ThenFiguresGrouped onlyTheSelectedGroupFigureIsUngrouped() {
-        //Only the children of the original group are selected
-        assertSelected(childrenFigures);
-
-        //The originally nonselected figures as well as the children of the original group are the only figures in the
-        //view
-        Set<Figure> expectedChildren = new HashSet<>(childrenFigures);
-        expectedChildren.addAll(nonselectedFigures);
-
-        assertFigureContains(editor.getActiveView().getDrawing(), expectedChildren);
-
-        return this;
-    }
-
     private void assertFigureContains(Figure group, Set<Figure> children) {
         assertTrue(group instanceof CompositeFigure);
         CompositeFigure composite = (CompositeFigure) group;
@@ -61,13 +44,6 @@ class ThenFiguresGrouped extends Stage<ThenFiguresGrouped> {
 
         for (Figure child : children) {
             assertTrue(composite.contains(child));
-        }
-    }
-
-    private void assertSelected(Set<Figure> figures) {
-        assertEquals(figures.size(), editor.getActiveView().getSelectionCount());
-        for (Figure figure : figures) {
-            assertTrue(editor.getActiveView().getSelectedFigures().contains(figure));
         }
     }
 }

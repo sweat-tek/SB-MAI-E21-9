@@ -52,21 +52,4 @@ class GivenFiguresToGroup extends Stage<GivenFiguresToGroup> {
         editor.getActiveView().addToSelection(group1);
         return this;
     }
-
-    GivenFiguresToGroup anUnselectedGroupFigure() {
-        CompositeFigure group1 = new SVGGroupFigure();
-        Figure f1 = new BezierFigure();
-        Figure f2 = new BezierFigure();
-        group1.add(f1);
-        group1.add(f2);
-        editor.getActiveView().getDrawing().add(group1);
-        return this;
-    }
-
-    GivenFiguresToGroup aSelectedEmptyGroupFigure() {
-        CompositeFigure group1 = new SVGGroupFigure();
-        editor.getActiveView().getDrawing().add(group1);
-        editor.getActiveView().addToSelection(group1);
-        return this;
-    }
 }
