@@ -26,3 +26,5 @@ FeatureTraces/
 nbactions.xml
 nb-configuration.xml
 /JHotDraw/nbproject/
+
+JHotDraw/src/main/java/org/jhotdraw/app/DefaultSDIApplication.java

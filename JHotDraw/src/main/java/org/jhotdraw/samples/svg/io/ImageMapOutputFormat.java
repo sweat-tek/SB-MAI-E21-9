@@ -47,6 +47,8 @@ public class ImageMapOutputFormat implements OutputFormat {
      */
     private AffineTransform drawingTransform = new AffineTransform();
     private static boolean DEBUG = true;
+    SVGOutputFormat svg = new SVGOutputFormat();
+
     /**
      * Set this to true, if AREA elements with <code>nohref="true"</code>
      * shall e included in the image map.
@@ -180,45 +182,7 @@ public class ImageMapOutputFormat implements OutputFormat {
         if (f instanceof SVGEllipseFigure) {
             writeEllipseElement(parent, (SVGEllipseFigure) f);
         } else if (f instanceof SVGGroupFigure) {
-            writeGElement(parent, (SVGGroupFigure) f);
-        } else if (f instanceof SVGImageFigure) {
-            writeImageElement(parent, (SVGImageFigure) f);
-        } else if (f instanceof SVGPathFigure) {
-            SVGPathFigure path = (SVGPathFigure) f;
-            if (path.getChildCount() == 1) {
-                BezierFigure bezier = (BezierFigure) path.getChild(0);
-                boolean isLinear = true;
-                for (int i = 0, n = bezier.getNodeCount(); i < n; i++) {
-                    if (bezier.getNode(i).getMask() != 0) {
-                        isLinear = false;
-                        break;
-                    }
-                }
-                if (isLinear) {
-                    if (bezier.isClosed()) {
-                        writePolygonElement(parent, path);
-                    } else {
-                        if (bezier.getNodeCount() == 2) {
-                            writeLineElement(parent, path);
-                        } else {
-                            writePolylineElement(parent, path);
-                        }
-                    }
-                } else {
-                    writePathElement(parent, path);
-                }
-            } else {
-                writePathElement(parent, path);
-            }
-        } else if (f instanceof SVGRectFigure) {
-            writeRectElement(parent, (SVGRectFigure) f);
-        } else if (f instanceof SVGTextFigure) {
-            writeTextElement(parent, (SVGTextFigure) f);
-        } else if (f instanceof SVGTextAreaFigure) {
-            writeTextAreaElement(parent, (SVGTextAreaFigure) f);
-        } else {
-            System.out.println("Unable to write: " + f);
-        }
+            svg.checkFormat();      }
     }
 
     /**
