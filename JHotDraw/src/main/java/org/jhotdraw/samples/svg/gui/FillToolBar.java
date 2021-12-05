@@ -76,7 +76,7 @@ public class FillToolBar extends AbstractToolBar {
 
     @Override
     @FeatureEntryPoint(JHotDrawFeatures.FILL_PALETTE)
-    protected JComponent createDisclosedComponent(int state) {
+    /*protected*/public JComponent createDisclosedComponent(int state) {
         JPanel p = null;
 
         switch (state) {
