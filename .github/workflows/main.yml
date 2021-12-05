@@ -33,4 +33,6 @@ jobs:
       # Runs a command (running tests) using the runners shell
       - name: Run tests
         working-directory: ./JHotDraw
+
         run: mvn test
+

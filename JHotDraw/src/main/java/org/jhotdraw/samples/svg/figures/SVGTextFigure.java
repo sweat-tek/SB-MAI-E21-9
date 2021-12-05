@@ -30,6 +30,8 @@ import org.jhotdraw.samples.svg.SVGConstants;
 import org.jhotdraw.util.*;
 import org.jhotdraw.xml.*;
 import static org.jhotdraw.samples.svg.SVGAttributeKeys.*;
+import org.jhotdraw.samples.svg.figures.*;
+
 /**
  * SVGText.
  * <p>
@@ -47,16 +49,16 @@ public class SVGTextFigure
         extends SVGAttributedFigure
         implements TextHolderFigure, SVGFigure {
     
-    protected Point2D.Double[] coordinates = new Point2D.Double[] { new Point2D.Double() };
-    protected double[] rotates = new double[] { 0 };
-    private boolean editable = true;
+    protected Point2D.Double[] coordinates = new Point2D.Double[] { new Point2D.Double() };         //Changed from "protected"
+    protected double[] rotates = new double[] { 0 };                                                //Changed from "protected"
+    private boolean editable = true;                                                            //Changed from "private"
     
     /**
      * This is used to perform faster drawing and hit testing.
      */
-    private transient Shape cachedTextShape;
-    private transient Rectangle2D.Double cachedBounds;
-    private transient Rectangle2D.Double cachedDrawingArea;
+    private transient Shape cachedTextShape;             //Changed from "private"
+    private transient Rectangle2D.Double cachedBounds;       //Changed from "private"
+    private transient Rectangle2D.Double cachedDrawingArea;      //Changed from "private"
     
     /** Creates a new instance. */
     public SVGTextFigure() {
@@ -129,7 +131,8 @@ public class SVGTextFigure
     }
     /**
      * Checks if a Point2D.Double is inside the figure.
-     */
+     */   
+    
     public boolean contains(Point2D.Double p) {
         if (TRANSFORM.get(this) != null) {
             try {
@@ -192,32 +195,23 @@ public class SVGTextFigure
      *
      * @param tx the transformation.
      */
+
+    @Override
     public void transform(AffineTransform tx) {
+
+        SVGTransformFigure svgTransformFigure = new SVGTransformFigure(this, tx);
+
         if (TRANSFORM.get(this) != null ||
                 tx.getType() != (tx.getType() & AffineTransform.TYPE_TRANSLATION)) {
-            if (TRANSFORM.get(this) == null) {
-                TRANSFORM.basicSet(this, (AffineTransform) tx.clone());
-            } else {
-                AffineTransform t = TRANSFORM.getClone(this);
-                t.preConcatenate(tx);
-                TRANSFORM.basicSet(this, t);
-            }
-        } else {
+            svgTransformFigure.transform();
+        }
+
+        else {
             for (int i=0; i < coordinates.length; i++) {
                 tx.transform(coordinates[i], coordinates[i]);
             }
-            if (FILL_GRADIENT.get(this) != null &&
-                    ! FILL_GRADIENT.get(this).isRelativeToFigureBounds()) {
-                Gradient g = FILL_GRADIENT.getClone(this);
-                g.transform(tx);
-                FILL_GRADIENT.basicSet(this, g);
-            }
-            if (STROKE_GRADIENT.get(this) != null && 
-                    ! STROKE_GRADIENT.get(this).isRelativeToFigureBounds()) {
-                Gradient g = STROKE_GRADIENT.getClone(this);
-                g.transform(tx);
-                STROKE_GRADIENT.basicSet(this, g);
-            }
+            svgTransformFigure.fillGradient();
+            svgTransformFigure.strokeGradient();
         }
         invalidate();
     }
@@ -383,10 +377,9 @@ public class SVGTextFigure
         return null; // SVG does not support connectors
     }
     
-    /**
-     * Returns a specialized tool for the given coordinate.
-     * <p>Returns null, if no specialized tool is available.
-     */
+    // Returns a specialized tool for the given coordinate.
+    // <p>Returns null, if no specialized tool is available.
+    
     @Override
     public Tool getTool(Point2D.Double p) {
         if (isEditable() && contains(p)) {
@@ -400,9 +393,8 @@ public class SVGTextFigure
         return coordinates[0].y - getBounds().y;
     }
     
-    /**
-     * Gets the number of characters used to expand tabs.
-     */
+    // Gets the number of characters used to expand tabs.
+     
     public int getTabSize() {
         return 8;
     }
@@ -435,4 +427,5 @@ public class SVGTextFigure
     public boolean isTextOverflow() {
         return false;
     }
+    
 }
