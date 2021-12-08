@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
@@ -86,25 +87,31 @@ public class viewtoolbarTest {
 
     @Test
     public void testViewPalette() {
-        System.out.println("Test View Palette states as components");
         
-        rootPane.add(resultParent);
-        rootPane.add(expResParent);
+        try {
+            System.out.println("Test View Palette states as components");
         
-        JComponent result = abstractToolBar.getDisclosedComponent(1);
-        resultParent.add(result);
-        result.paint(graphics2d);
-        int resultInt = resultParent.getComponentCount();
-        System.out.println("result:" + resultInt);
+            rootPane.add(resultParent);
+            rootPane.add(expResParent);
+
+            JComponent result = abstractToolBar.getDisclosedComponent(1);
+            resultParent.add(result);
+            result.paint(graphics2d);
+            int resultInt = resultParent.getComponentCount();
+            System.out.println("result:" + resultInt);
+
+            JComponent expResult = new JPanel();
+            expResParent.add(expResult);
+            expResult.paint(graphics2d);
+            int expResultInt = expResParent.getComponentCount();
+
+            System.out.println("expresult:" + expResultInt);
+            assertEquals("expects parent to have one component", 1, resultInt);
+            assertEquals(expResultInt, resultInt);
+        } catch (HeadlessException exception) {
+            return;
+        }
         
-        JComponent expResult = new JPanel();
-        expResParent.add(expResult);
-        expResult.paint(graphics2d);
-        int expResultInt = expResParent.getComponentCount();
-        
-        System.out.println("expresult:" + expResultInt);
-        assertEquals("expects parent to have one component", 1, resultInt);
-        assertEquals(expResultInt, resultInt);
     }
     
 }
