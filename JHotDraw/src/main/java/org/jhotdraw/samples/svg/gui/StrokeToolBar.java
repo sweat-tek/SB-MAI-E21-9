@@ -14,20 +14,29 @@
 package org.jhotdraw.samples.svg.gui;
 
 import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
+import org.jhotdraw.app.JHotDrawFeatures;
+import org.jhotdraw.draw.AttributeKey;
+import org.jhotdraw.draw.DrawingEditor;
+import org.jhotdraw.draw.action.ButtonFactory;
+import org.jhotdraw.draw.action.SelectionComponentRepainter;
+import org.jhotdraw.gui.FigureAttributeEditorHandler;
+import org.jhotdraw.gui.JAttributeSlider;
+import org.jhotdraw.gui.JAttributeTextField;
+import org.jhotdraw.gui.JPopupButton;
+import org.jhotdraw.gui.plaf.palette.PaletteButtonUI;
+import org.jhotdraw.gui.plaf.palette.PaletteFormattedTextFieldUI;
+import org.jhotdraw.gui.plaf.palette.PaletteSliderUI;
+import org.jhotdraw.text.ColorFormatter;
 import org.jhotdraw.text.JavaNumberFormatter;
-import javax.swing.border.*;
-import org.jhotdraw.gui.*;
-import org.jhotdraw.gui.plaf.palette.*;
-import org.jhotdraw.util.*;
+import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.SliderUI;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
-import javax.swing.plaf.SliderUI;
-import org.jhotdraw.app.JHotDrawFeatures;
-import org.jhotdraw.draw.*;
-import org.jhotdraw.draw.action.*;
-import org.jhotdraw.text.ColorFormatter;
+
 import static org.jhotdraw.samples.svg.SVGAttributeKeys.*;
 
 /**
@@ -160,7 +169,7 @@ public class StrokeToolBar extends AbstractToolBar {
             case 2:
                  {
                     p = new JPanel();
-                   p.setOpaque(false);
+                    p.setOpaque(false);
                     p.setBorder(new EmptyBorder(5, 5, 5, 8));
                     ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.svg.Labels");
 
