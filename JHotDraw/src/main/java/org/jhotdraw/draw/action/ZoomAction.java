@@ -48,6 +48,18 @@ public class ZoomAction extends AbstractDrawingViewAction {
         putValue(Action.NAME, label);
     }
     
+    public double getScaleFactor() {
+        return scaleFactor;
+    }
+
+    public AbstractButton getButton() {
+        return button;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+    
     public void actionPerformed(java.awt.event.ActionEvent e) {
         if (button != null) {
             button.setText(label);
