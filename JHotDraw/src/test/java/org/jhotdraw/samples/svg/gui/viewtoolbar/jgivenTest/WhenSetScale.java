@@ -9,31 +9,34 @@ import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import java.awt.Component;
-import javax.swing.JComponent;
-import junit.framework.Assert;
-import org.jhotdraw.draw.DefaultDrawingView;
-import org.jhotdraw.samples.svg.gui.ViewToolBar;
+import org.jhotdraw.draw.DrawingView;
+import static org.mockito.Mockito.mock;
+
 
 /**
  *
  * @author Samuel
  */
-public class WhenViewIsVisible extends Stage<WhenViewIsVisible>{
+public class WhenSetScale extends Stage<WhenSetScale>{
     
     @ExpectedScenarioState
-    @ProvidedScenarioState
-    private ViewToolBar viewToolBar;
+    private static DrawingView view;
+
     
     @BeforeStage
     public void before() {
-        
+        view = mock(DrawingView.class);
     }
     
-    public WhenViewIsVisible settingAView(){
-        ViewToolBar viewToolBar = new ViewToolBar();
-        DefaultDrawingView view = new DefaultDrawingView();
-        viewToolBar.setView(view);
+    
+    public WhenSetScale getScaleFactor() {
+        view.getScaleFactor();
         return this;
-    } 
+    }
+    
+    public WhenSetScale getComponent() {
+        view.getComponent();
+        return this;
+    }
+    
 }

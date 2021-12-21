@@ -12,13 +12,13 @@ import org.junit.Test;
  *
  * @author Samuel
  */
-public class AcceptanceTest extends ScenarioTest<GivenView, WhenViewIsVisible, ThenViewIsVisible> {
+public class AcceptanceTest extends ScenarioTest<GivenZoomAction, WhenSetScale, ThenZoomIsPossible> {
     
     @Test
-    public void view_palette_has_a_grid(){
-        given().aView();
-        when().settingAView();
-        then().viewIsVisible();
+    public void viewPaletteHasAButtonScaleFactor() {
+        given().givenZoomAction();
+        when().getComponent().and().getScaleFactor();
+        then().zoomIsPoosible();
     }
     
 }
