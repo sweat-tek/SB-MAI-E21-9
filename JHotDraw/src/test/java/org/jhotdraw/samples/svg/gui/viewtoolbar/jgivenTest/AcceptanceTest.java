@@ -15,10 +15,10 @@ import org.junit.Test;
 public class AcceptanceTest extends ScenarioTest<GivenZoomAction, WhenSetScale, ThenZoomIsPossible> {
     
     @Test
-    public void viewPaletteHasAButtonScaleFactor() {
-        given().givenZoomAction();
-        when().getComponent().and().getScaleFactor();
-        then().zoomIsPoosible();
+    public void viewPaletteHasAZoomButton() {
+        given().zoomAction();
+        when().component().and().getScaleFactor();
+        then().zoomingIsEnable();
     }
     
 }

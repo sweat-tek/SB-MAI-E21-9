@@ -48,7 +48,7 @@ public class GivenZoomAction extends Stage<GivenZoomAction>{
         scaleFactor = 1.0;
     }
     
-    GivenZoomAction givenZoomAction(){
+    GivenZoomAction zoomAction(){
         instance = new ZoomAction(view, scaleFactor, button);
         
         return self();

@@ -23,7 +23,7 @@ public abstract class ThenZoomIsPossible extends Stage<ThenZoomIsPossible>{
     private ZoomAction instance;
 
     
-    public ThenZoomIsPossible zoomIsPoosible(){
+    public ThenZoomIsPossible zoomingIsEnable(){
         instance = new ZoomAction(mock(DrawingView.class), 1 , mock(AbstractButton.class));
         assertTrue(instance.isEnabled());
        

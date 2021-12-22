@@ -34,7 +34,7 @@ public class WhenSetScale extends Stage<WhenSetScale>{
         return this;
     }
     
-    public WhenSetScale getComponent() {
+    public WhenSetScale component() {
         view.getComponent();
         return this;
     }
