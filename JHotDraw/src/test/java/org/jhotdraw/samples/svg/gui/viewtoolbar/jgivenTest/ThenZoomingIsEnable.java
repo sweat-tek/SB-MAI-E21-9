@@ -17,13 +17,13 @@ import static org.mockito.Mockito.mock;
  *
  * @author Samuel
  */
-public abstract class ThenZoomIsPossible extends Stage<ThenZoomIsPossible>{
+public abstract class ThenZoomingIsEnable extends Stage<ThenZoomingIsEnable>{
     
     @ExpectedScenarioState
     private ZoomAction instance;
 
     
-    public ThenZoomIsPossible zoomingIsEnable(){
+    public ThenZoomingIsEnable zoomingIsEnable(){
         instance = new ZoomAction(mock(DrawingView.class), 1 , mock(AbstractButton.class));
         assertTrue(instance.isEnabled());
        

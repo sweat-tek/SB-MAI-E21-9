@@ -12,7 +12,7 @@ import org.junit.Test;
  *
  * @author Samuel
  */
-public class AcceptanceTest extends ScenarioTest<GivenZoomAction, WhenSetScale, ThenZoomIsPossible> {
+public class AcceptanceTest extends ScenarioTest<GivenZoomAction, WhenSetScale, ThenZoomingIsEnable> {
     
     @Test
     public void viewPaletteHasAZoomButton() {
