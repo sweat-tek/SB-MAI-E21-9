@@ -13,7 +13,6 @@ import org.jhotdraw.samples.svg.figures.SVGGroupFigure;
 public class WhenGrouping extends Stage<WhenGrouping> {
 
     @ExpectedScenarioState
-    @ProvidedScenarioState
     private DrawingEditor editor;
 
     @ProvidedScenarioState
